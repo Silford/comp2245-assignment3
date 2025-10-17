@@ -2,6 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const board = document.getElementById("board");
   const squares = document.querySelectorAll("#board div");
   const statusDiv = document.getElementById("status");
+  const newGameBtn = document.querySelector(".btn");
   let currentPlayer = "X";
   let gameOver = false;
 
@@ -29,6 +30,17 @@ window.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
+  });
+
+  newGameBtn.addEventListener("click", () => {
+    squares.forEach(sq => {
+        sq.textContent = "";
+        sq.classList.remove("X", "O", "hover");
+    });
+    statusDiv.textContent = "Move your mouse over a square and click to play an X or an O.";
+    statusDiv.classList.remove("you-won");
+    currentPlayer = "X";
+    gameOver = false;
   });
 
   function checkWinner(player){ // Asked ChatGPT to help create a function to check for a winner
