@@ -1,5 +1,14 @@
 window.addEventListener("DOMContentLoaded", () => {
+    const board = document.getElementById("board");
     const squares = document.querySelectorAll("#board div");
+    let currentPlayer = "X";
+
+    board.style.display = "grid";
+    board.style.gridTemplateColumns = "repeat(3, 100px)";
+    board.style.gridTemplateRows = "repeat(3, 100px)";
+    board.style.gap = "5px";
+    board.style.width = "max-content";
+    board.style.margin = "50px auto";
 
     squares.forEach(square => {
         square.classList.add("square");
@@ -10,18 +19,15 @@ window.addEventListener("DOMContentLoaded", () => {
         square.style.display = "flex";
         square.style.alignItems = "center";
         square.style.justifyContent = "center";
-        square.style.fontSize = "2px";
+        square.style.fontSize = "80px";
         square.style.cursor = "pointer";
         square.style.backgroundColor = "#f0f0f0";
+
+        square.addEventListener("click", () => {
+            if (square.textContent === ""){
+                square.textContent = currentPlayer;
+                currentPlayer = currentPlayer === "X" ? "O" : "X";
+            }
+        });
     });
-
-    const board = document.getElementById("board");
-    board.style.display = "grid";
-    board.style.gridTemplateColumns = "repeat(3, 100px)";
-    board.style.gridTemplateRows = "repeat(3, 100px)";
-    board.style.gap = "5px";
-    board.style.width = "max-content";
-    board.style.margin = "50px auto";
-
-    console.log("Board style successfully on load.");
-})
+});
